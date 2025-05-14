@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>regexTool</title>
+</head>
+<body>
+    <h2>正規表現チェッカー</h2>
+
+    <label>正規表現(左辺)</label><br>
+    <input type="text" id="pattern" style="width: 100%;" placeholder="例：^.*(支帳簿価額|期首帳簿価額).*$"><br><br>
+
+    <label>補正文字列(右辺):</label><br>
+    <input type="text" id="replacement" style="width: 100%;" placeholder="例：期末帳簿価額"><br><br>
+
+    <label>対象文字列(補正したい文字):</label><br>
+    <textarea id="inputText" rows="4" style="width: 100%;" placeholder="例：支帳簿価額"></textarea><br><br>
+
+    <button onclick="replaceText()">実行</button>
+    <button onclick="clearAll()">クリア</button>
+
+    <h3>変換結果:</h3>
+    <div id="result" style="background-color: #f0f0f0; padding: 10px;"></div>
+
+    <!-- JavaScriptファイルを読み込む -->
+    <script src="regex_tool.js"></script>
+</body>
+</html>
