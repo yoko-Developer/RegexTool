@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正規表現置換アプリ</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>正規表現置換ツール</h1>
+
+        <label for="inputText" class="required">変換したいテキスト</label>
+
+        <textarea id="inputText" rows="4" placeholder="変換したいテキストを入力"></textarea>
+
+        <label for="inputText" class="required">正規表現（左辺）</label>
+        <input type="text" id="pattern" placeholder="例: ^.*(支帳簿価額|期末帳簿価額 and|末帳簿価格).*$" />
+
+        <label for="inputText" class="required">置換文字列（右辺）</label>
+        <input type="text" id="replacement" placeholder="例: 期末帳簿価額" />
+
+        <div class="button-group">
+            <button id="convertBtn">変換</button>
+            <button id="clearBtn">クリア</button>
+        </div>
+
+        <label for="output">変換結果</label>
+        <textarea id="output" rows="4" readonly></textarea>
+    </div>
+
+    <script src="../js/RegexTool.js"></script>
+</body>
+
+</html>
