@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正規表現置換アプリ</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        label.required::after {
+            content: " *";
+            color: red;
+        }
+
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        textarea[readonly] {
+            background-color: #f5f5f5;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 1em;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:last-child {
+            margin-right: 0;
+            background-color: #aaa;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>正規表現置換ツール</h1>
+
+        <label for="inputText" class="required">変換したいテキスト</label>
+        <textarea id="inputText" rows="4" placeholder="ここに変換したいテキストを入力"></textarea>
+
+        <label for="pattern" class="required">正規表現（左辺）</label>
+        <input type="text" id="pattern" placeholder="例: ^.*(支帳簿価額|期末帳簿価額 and|末帳簿価格).*$" />
+
+        <label for="replacement" class="required">置換文字列（右辺）</label>
+        <input type="text" id="replacement" placeholder="例: 期末帳簿価額" />
+
+        <div class="button-group">
+            <button id="runBtn">変換</button>
+            <button id="clearBtn">クリア</button>
+        </div>
+
+        <label for="output">変換結果</label>
+        <textarea id="output" rows="4" readonly></textarea>
+    </div>
+
+    <!-- JavaScriptはここに書く -->
+    <script>
+        // ページが読み込まれたときにイベントを設定
+        window.addEventListener('DOMContentLoaded', () => {
+            const runBtn = document.getElementById('runBtn');
+            const clearBtn = document.getElementById('clearBtn');
+
+            runBtn.addEventListener('click', () => {
+                const input = document.getElementById('inputText').value;
+                const pattern = document.getElementById('pattern').value;
+                const replacement = document.getElementById('replacement').value;
+
+                try {
+                    const regex = new RegExp(pattern, 'g');
+                    const result = input.replace(regex, replacement);
+                    document.getElementById('output').value = result;
+                } catch (e) {
+                    alert('正規表現エラー: ' + e.message);
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                document.getElementById('inputText').value = '';
+                document.getElementById('pattern').value = '';
+                document.getElementById('replacement').value = '';
+                document.getElementById('output').value = '';
+            });
+        });
+    </script>
+</body>
+
+</html>
